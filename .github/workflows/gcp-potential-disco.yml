@@ -9,9 +9,10 @@ on:
       - synchronize # default
       - reopened # default
       - closed
+  workflow_dispatch:
 
-env:
-  WORKING_DIR: infrastructure 
+#env:
+#  WORKING_DIR: infrastructure 
 
 jobs:
   opentofu:

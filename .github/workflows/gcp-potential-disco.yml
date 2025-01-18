@@ -86,9 +86,9 @@ jobs:
             body: output
           })
 
-    - name: Tofu Apply
+    - name: OpenTofu Apply
       id: apply
-      if: github.event.pull_request.merged == true
+      #if: github.event.pull_request.merged == true
       run: echo "tofu apply -auto-approve -input=false" # Stubbed for now
 
     - uses: actions/github-script@v6

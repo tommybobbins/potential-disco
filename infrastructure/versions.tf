@@ -12,6 +12,6 @@ terraform {
 
   backend "gcs" {
     bucket = "skilled-circle-448210-terraform" # need to update with the bucket name
-    prefix = "state"
+    prefix = "infrastructure-state"
   }
 }

@@ -1,0 +1,69 @@
+name: gcp-potential-disco-teardown
+
+on:
+  workflow_dispatch:
+
+env:
+  WORKING_DIR: infrastructure 
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    environment: "PRD"
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+    steps:
+    - uses: actions/checkout@v3
+
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: google-github-actions/auth@v0.7.0
+      with:
+        create_credentials_file: 'true'
+        workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
+        service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+
+    - uses: opentofu/setup-opentofu@v1
+
+    - name: OpenTofu Destroy
+      id: destroy
+      run: tofu destroy -auto-approve
+      continue-on-error: true
+
+    - uses: actions/github-script@v6
+      env:
+        DESTROY: "tofu\n${{ steps.destroy.outputs.stdout }}"
+      with:
+        github-token: ${{ secrets.REPO_PAT_TOKEN }}
+        script: |
+          #### OpenTofu Destroy ⚙️\`${{ steps.destroy.outcome }}\`
+          <details><summary>Destroy Output</summary>
+     
+          \`\`\`\n
+          ${{ steps.destroy.outputs.stdout }}
+          \`\`\`
+
+          </details>
+
+          #### OpenTofu destroy 📖\`${{ steps.destroy.outcome }}\`
+      
+          <details><summary>Show Destroy</summary>
+
+          \`\`\`\n
+          ${process.env.DESTROY}
+          \`\`\`
+
+          </details>
+
+          *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.WORKING_DIR }}\`, Workflow: \`${{ github.workflow }}\`*`;
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: output

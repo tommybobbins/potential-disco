@@ -33,7 +33,11 @@ jobs:
 
     - name: OpenTofu Init
       id: init
-      run: tofu init
+      run: |
+        echo "TFVAR_project: $TFVAR_project"
+        tofu init
+      env:
+         TFVAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 
     - name: OpenTofu Destroy
       id: destroy

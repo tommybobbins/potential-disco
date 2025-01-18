@@ -30,6 +30,10 @@ jobs:
 
     - uses: opentofu/setup-opentofu@v1
 
+    - name: OpenTofu Init
+      id: init
+      run: tofu init
+
     - name: OpenTofu Destroy
       id: destroy
       run: tofu destroy -auto-approve

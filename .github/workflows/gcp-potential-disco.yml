@@ -11,15 +11,15 @@ on:
       - closed
   workflow_dispatch:
 
-#env:
-#  WORKING_DIR: infrastructure 
+env:
+  WORKING_DIR: infrastructure 
 
 jobs:
   opentofu:
-    permissions:
-      contents: read
-      id-token: write
-      pull-requests: write
+    #permissions:
+    #  contents: read
+    #  id-token: write
+    #  pull-requests: write
     runs-on: ubuntu-latest
     defaults:
       run:

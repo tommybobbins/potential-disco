@@ -1,0 +1,47 @@
+name: push-to-artifact-registry
+
+on:
+  workflow_dispatch:
+
+env:
+  WORKING_DIR:  "./containers"
+  IMAGE_NAME: 'powerstation-prom-exporter'
+  PROJECT_ID: ${{ vars.TFVAR_GCP_PROJECT }}
+  AR_REPO_LOCATION: 'europe-west2'
+  AR_REPO_NAME: powerstation-prom-exporter
+  SERVICE_ACOUNT: ${{ vars.GCP_SERVICE_ACCOUNT }}
+  WORKLOAD_IDENTIY_PROVIDER: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    environment: "PRD"
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}/${{ env.REPO_NAME }}
+    steps:
+    - uses: actions/checkout@v3
+
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: google-github-actions/auth@v0.7.0
+      with:
+        create_credentials_file: 'true'
+        workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
+        service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+
+    - name: Docker Auth
+      id: docker-auth
+      uses: 'docker/login-action@v1'
+      with:
+        username: 'oauth2accesstoken'
+        password: '${{ steps.auth.outputs.access_token }}'
+        registry: '${{ env.AR_REPO_LOCATION }}-docker.pkg.dev'
+
+    - name: Build and Push Container
+      run: |-
+        docker build -t "${{ env.AR_REPO_LOCATION }}-docker.pkg.dev/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}" ./
+        docker push "${{ env.AR_REPO_LOCATION }}-docker.pkg.dev/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}" ./

@@ -57,17 +57,25 @@ variable "argocd_enabled" {
   default     = false
 }
 
-variable "gke_cluster_ipv4_block"  {
-  description = "Kubernetes IPv4 CIDR block" 
-  default =  "10.96.0.0/14"
+variable "gke_cluster_ipv4_block" {
+  description = "Kubernetes IPv4 CIDR block"
+  default     = "10.96.0.0/14"
 }
 
-variable "gke_services_ipv4_block"  {
-  description = "Kubernetes Services IPv4 CIDR block" 
-  default =  "10.192.0.0/16"
+variable "gke_services_ipv4_block" {
+  description = "Kubernetes Services IPv4 CIDR block"
+  default     = "10.192.0.0/16"
 }
 
 variable "vpc_ipv4_block" {
   description = "VPC IPv4 CIDR block"
-  default = "10.23.23.0/24"
+  default     = "10.23.23.0/24"
+}
+
+variable "container_artifact_registry" {
+  description = "List of container registries"
+  type        = list(any)
+  default = [
+    "powerstation-prom-exporter",
+  ]
 }

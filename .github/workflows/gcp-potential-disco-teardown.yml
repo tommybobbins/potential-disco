@@ -45,7 +45,7 @@ jobs:
       with:
         github-token: ${{ secrets.REPO_PAT_TOKEN }}
         script: |
-          #### OpenTofu Destroy ⚙️\`${{ steps.destroy.outcome }}\`
+          const output = `#### OpenTofu Destroy Output ⚙️\\`${{ steps.destroy.outcome }}\`
           <details><summary>Destroy Output</summary>
           \`\`\`\n
           ${{ steps.destroy.outputs.stdout }}

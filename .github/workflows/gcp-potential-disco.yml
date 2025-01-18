@@ -5,11 +5,18 @@ on:
     branches:
       - "main"
   workflow_dispatch:
+  pull_request:
+    # paths: # setup paths if necessary
+    branches:
+      - main
+    types:
+      - opened # default
+      - synchronize # default
+      - reopened # default
+      - closed
 
 env:
   WORKING_DIR: infrastructure 
-#  WORKLOAD_IDENTITY_PROVIDER: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
-#  GCP_SERVICE_ACCOUNT: ${{ vars.GCP_SERVICE_ACCOUNT }}
 
 jobs:
   setup:

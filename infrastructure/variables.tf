@@ -10,11 +10,6 @@ variable "project" {
   default     = "my-project-name"
 }
 
-variable "credentials_file" {
-  description = "Google Cloud Credentials json file"
-  default     = "gcp_deployment_creds.json"
-}
-
 variable "env" {
   description = "Project environment"
   default     = "dev"

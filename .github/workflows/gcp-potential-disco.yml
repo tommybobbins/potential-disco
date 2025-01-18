@@ -89,7 +89,7 @@ jobs:
     - name: Tofu Apply
       id: apply
       if: github.event.pull_request.merged == true
-      run: tofu apply -auto-approve -input=false
+      run: echo "tofu apply -auto-approve -input=false" # Stubbed for now
 
     - uses: actions/github-script@v6
       if: github.event.pull_request.merged == true

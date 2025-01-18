@@ -11,10 +11,10 @@ on:
       - closed
 
 env:
-  WORKING_DIR: infrastructure/ # relative path under which your terraform codes are
+  WORKING_DIR: infrastructure 
 
 jobs:
-  terraform:
+  opentofu:
     # Add "id-token" with the intended permissions.
     permissions:
       contents: read

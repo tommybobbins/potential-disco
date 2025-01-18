@@ -99,7 +99,7 @@ jobs:
     - name: OpenTofu Apply
       id: apply
       #if: github.event.pull_request.merged == true
-      run: tofu apply -auto-approve -input=false"
+      run: tofu apply -auto-approve -input=false
       env: 
          TF_VAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 

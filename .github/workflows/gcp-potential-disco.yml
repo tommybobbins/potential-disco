@@ -8,17 +8,20 @@ on:
 
 env:
   WORKING_DIR: infrastructure 
+#  WORKLOAD_IDENTITY_PROVIDER: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
+#  GCP_SERVICE_ACCOUNT: ${{ vars.GCP_SERVICE_ACCOUNT }}
 
 jobs:
   setup:
     runs-on: ubuntu-latest
-    #permissions:
-    #  contents: read
-    #  id-token: write
-    #  pull-requests: write
-    #defaults:
-    #  run:
-    #    working-directory: ${{ env.WORKING_DIR }}
+    environment: "PRD"
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
     steps:
     - uses: actions/checkout@v3
 
@@ -28,7 +31,7 @@ jobs:
       with:
         create_credentials_file: 'true'
         workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
-        service_account: ${{ env.GITHUB_SERVICE_ACCOUNT }}
+        service_account: ${{ env.GCP_SERVICE_ACCOUNT }}
 
     - uses: opentofu/setup-opentofu@v1
 

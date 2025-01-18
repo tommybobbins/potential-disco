@@ -1,43 +1,43 @@
-variable "gke_username" {
-  default     = ""
-  description = "gke username"
-}
+#variable "gke_username" {
+#  default     = ""
+#  description = "gke username"
+#}
 
-variable "gke_password" {
-  default     = ""
-  description = "gke password"
-}
+#variable "gke_password" {
+#  default     = ""
+#  description = "gke password"
+#}
 
-variable "gke_num_nodes" {
-  default     = 1
-  description = "number of gke nodes"
-}
+#variable "gke_num_nodes" {
+#  default     = 1
+#  description = "number of gke nodes"
+#}
 
 # GKE cluster
-resource "google_container_cluster" "primary" {
-  name     = "${var.project}-gke"
-  location = var.region
-
-  # We can't create a cluster with no node pool defined, but we want to only use
-  # separately managed node pools. So we create the smallest possible default
-  # node pool and immediately delete it.
-  #remove_default_node_pool = true
-  initial_node_count = 0
-  #  node_locations = [
-  #    "${var.region}-d",
-  #  ]
-  enable_autopilot = true
-  network          = google_compute_network.vpc.name
-  subnetwork       = google_compute_subnetwork.subnet.name
-
-  ip_allocation_policy {
-    cluster_ipv4_cidr_block  = "10.96.0.0/14"
-    services_ipv4_cidr_block = "10.192.0.0/16"
-  }
-
-  deletion_protection = false
-
-}
+#resource "google_container_cluster" "primary" {
+#  name     = "${var.project}-gke"
+#  location = var.region
+#
+#  # We can't create a cluster with no node pool defined, but we want to only use
+#  # separately managed node pools. So we create the smallest possible default
+#  # node pool and immediately delete it.
+#  #remove_default_node_pool = true
+#  initial_node_count = 0
+#  #  node_locations = [
+#  #    "${var.region}-d",
+#  #  ]
+#  enable_autopilot = true
+#  network          = google_compute_network.vpc.name
+#  subnetwork       = google_compute_subnetwork.subnet.name
+#
+#  ip_allocation_policy {
+#    cluster_ipv4_cidr_block  = var.gke_cluster_ipv4_block
+#    services_ipv4_cidr_block = var.gke_services_ipv4_block
+#  }
+#
+#  deletion_protection = false
+#
+#}
 
 # Separately Managed Node Pool
 #resource "google_container_node_pool" "primary_nodes" {

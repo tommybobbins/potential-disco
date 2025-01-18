@@ -47,7 +47,7 @@ $ tofu apply
 ````
 ## Github actions setup
 
-Create a set of ENVIRONMENT variables GCP_SERVICE_ACCOUNT, WORKING_DIR and WORKLOAD_IDENTITY_PROVIDER against a new Github environment PRD in Repo Name->Settings->Secrets and variables->Actions
+Create a set of ENVIRONMENT variables TFVAR_GCP_PROJECT, GCP_SERVICE_ACCOUNT, WORKING_DIR and WORKLOAD_IDENTITY_PROVIDER against a new Github environment PRD in Repo Name->Settings->Secrets and variables->Actions
 ![Github Environment Variables](./images/environment_vars.png)
 
 Create a personal access token for just this repository. Github->Click user icon->Developer settings->Personal Access tokens->Fine Grained access tokens->generate new token. Make a note of the token and add this into the Repository as a secret named REPO_PAT_TOKEN using Repo Name->Settings->Secrets and Variables->Secrets

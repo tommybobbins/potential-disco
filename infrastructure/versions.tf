@@ -11,7 +11,7 @@ terraform {
   required_version = "> 0.14"
 
   backend "gcs" {
-    bucket = "skilled-circle-448210-terraform" # need to update with the bucket name
+    bucket = "${var.project}-terraform" # need to update with the bucket name
     prefix = "infrastructure-state"
   }
 }

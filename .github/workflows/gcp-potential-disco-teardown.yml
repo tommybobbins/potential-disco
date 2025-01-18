@@ -5,6 +5,7 @@ on:
 
 env:
   WORKING_DIR: infrastructure 
+  TFVAR_project:  ${{ vars.TFVAR_GCP_PROJECT }}
 
 jobs:
   setup:

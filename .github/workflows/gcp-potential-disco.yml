@@ -16,7 +16,8 @@ on:
       - closed
 
 env:
-  WORKING_DIR: infrastructure 
+  WORKING_DIR:  ${{ vars.WORKING_DIR }}
+  TFVAR_project:  ${{ vars.TFVAR_GCP_PROJECT }}
 
 jobs:
   setup:
@@ -39,6 +40,7 @@ jobs:
         create_credentials_file: 'true'
         workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
         service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+        TFVAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 
     - uses: opentofu/setup-opentofu@v1
 

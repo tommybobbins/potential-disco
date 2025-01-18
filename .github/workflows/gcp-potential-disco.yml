@@ -56,6 +56,8 @@ jobs:
       id: plan
       run: tofu plan -no-color
       continue-on-error: true
+      env: 
+         TF_VAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 
     - uses: actions/github-script@v6
       if: github.event_name == 'pull_request'
@@ -98,6 +100,8 @@ jobs:
       id: apply
       #if: github.event.pull_request.merged == true
       run: echo "tofu apply -auto-approve -input=false" # Stubbed for now
+      env: 
+         TF_VAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 
     - uses: actions/github-script@v6
       if: github.event.pull_request.merged == true

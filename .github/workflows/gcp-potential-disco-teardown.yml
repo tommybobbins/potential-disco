@@ -43,3 +43,5 @@ jobs:
       id: destroy
       run: tofu destroy -auto-approve
       continue-on-error: true
+      env:
+         TF_VAR_project: ${{ vars.TFVAR_GCP_PROJECT }}

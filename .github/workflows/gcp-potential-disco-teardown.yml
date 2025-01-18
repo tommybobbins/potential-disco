@@ -47,29 +47,20 @@ jobs:
         script: |
           #### OpenTofu Destroy ⚙️\`${{ steps.destroy.outcome }}\`
           <details><summary>Destroy Output</summary>
-     
           \`\`\`\n
           ${{ steps.destroy.outputs.stdout }}
           \`\`\`
-
           </details>
-
           #### OpenTofu destroy 📖\`${{ steps.destroy.outcome }}\`
-      
           <details><summary>Show Destroy</summary>
-
           \`\`\`\n
           ${process.env.DESTROY}
           \`\`\`
-
           </details>
-
           *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.WORKING_DIR }}\`, Workflow: \`${{ github.workflow }}\`*`;
-
           github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
             body: output
-        })
-
+          })

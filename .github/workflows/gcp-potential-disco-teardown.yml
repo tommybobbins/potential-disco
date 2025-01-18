@@ -46,15 +46,9 @@ jobs:
         github-token: ${{ secrets.REPO_PAT_TOKEN }}
         script: |
           const output = `#### OpenTofu Destroy Output ⚙️\\`${{ steps.destroy.outcome }}\`
-          <details><summary>Destroy Output</summary>
-          \`\`\`\n
-          ${{ steps.destroy.outputs.stdout }}
-          \`\`\`
-          </details>
-          #### OpenTofu destroy 📖\`${{ steps.destroy.outcome }}\`
           <details><summary>Show Destroy</summary>
           \`\`\`\n
-          ${process.env.DESTROY}
+          ${{ steps.destroy.outputs.stdout }}
           \`\`\`
           </details>
           *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.WORKING_DIR }}\`, Workflow: \`${{ github.workflow }}\`*`;
@@ -64,3 +58,4 @@ jobs:
             repo: context.repo.repo,
             body: output
           })
+

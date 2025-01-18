@@ -65,8 +65,16 @@ Run the standard terraform deployment:
    $ tofu init
    $ tofu plan
    $ tofu apply
-   $ export KUBECONFIG=~/.kube/config
    ```
+
+For the bootstrap enabling apis, some have to be imported manually:
+````
+$ tofu state rm "google_project_service.service[\"oslogin.googleapis.com\"]"
+$ tofu state rm "google_project_service.service[\"iamcredentials.googleapis.com\"]"
+$ tofu import "google_project_service.service[\"oslogin.googleapis.com\"]" "${PROJECT_ID}/oslogin.googleapis.com"
+$ tofu import "google_project_service.service[\"iamcredentials.googleapis.com\"]" "${PROJECT_ID}/iamcredentials.googleapis.com"
+$ tofu apply
+
 
 
 This will create everything except the kubectl_manifests which must be created after getting the cluster credentials These will be generated on a second tofu apply once the kubernetes cluster credentials have been found.

@@ -1,0 +1,88 @@
+## Argo CD configuration
+## Ref: https://github.com/argoproj/argo-cd
+##
+
+# -- Provide a name in place of `argocd`
+nameOverride: argocd
+# -- String to fully override `"argo-cd.fullname"`
+fullnameOverride: ""
+# -- Override the Kubernetes version, which is used to evaluate certain manifests
+kubeVersionOverride: ""
+# Override APIVersions
+# If you want to template helm charts but cannot access k8s API server
+# you can set api versions here
+apiVersionOverrides:
+  # -- String to override apiVersion of GKE resources rendered by this helm chart
+  cloudgoogle: "" # cloud.google.com/v1
+
+# -- Create aggregated roles that extend existing cluster roles to interact with argo-cd resources
+## Ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles
+createAggregateRoles: false
+# -- Create cluster roles for cluster-wide installation.
+## Used when you manage applications in the same cluster where Argo CD runs
+createClusterRoles: true
+
+## Custom resource configuration
+crds:
+  # -- Install and upgrade CRDs
+  install: true
+  # -- Keep CRDs on chart uninstall
+  keep: true
+  # -- Annotations to be added to all CRDs
+  annotations: {}
+  # -- Addtional labels to be added to all CRDs
+  additionalLabels: {}
+
+  # Default image used by all components
+  image:
+    # -- If defined, a repository applied to all Argo CD deployments
+    repository: 040316634681.dkr.ecr.eu-west-2.amazonaws.com/quay/argoproj/argocd
+    # -- Overrides the global Argo CD image tag whose default is the chart appVersion
+    tag: ""
+    # -- If defined, a imagePullPolicy applied to all Argo CD deployments
+    imagePullPolicy: IfNotPresent
+  # Default affinity preset for all components
+  affinity:
+    # -- Default pod anti-affinity rules. Either: `none`, `soft` or `hard`
+    podAntiAffinity: none
+    # Node affinity rules
+    nodeAffinity:
+      # -- Default node affinity rules. Either: `none`, `soft` or `hard`
+      type: none
+      # -- Default match expressions for node affinity
+      matchExpressions: []
+        # - key: topology.kubernetes.io/zone
+        #   operator: In
+        #   values:
+        #    - antarctica-east1
+        #    - antarctica-west1
+
+  # -- Secrets with credentials to pull images from a private registry
+  imagePullSecrets: []
+
+  # -- Annotations for the all deployed Statefulsets
+  statefulsetAnnotations: {}
+
+  # -- Annotations for the all deployed Deployments
+  deploymentAnnotations: {}
+
+  # -- Annotations for the all deployed pods
+  podAnnotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "true" # Allow cluster autoscaler to evict pods for scaling events
+    fluentbit.io/exclude: "true"
+
+  # -- Labels for the all deployed pods
+  podLabels: {}
+
+  # -- Add Prometheus scrape annotations to all metrics services. This can be used as an alternative to the ServiceMonitors.
+  addPrometheusAnnotations: false
+
+  # -- Toggle and define pod-level security context.
+  # @default -- `{}` (See [values.yaml])
+  securityContext: {}
+  #  runAsUser: 999
+  #  runAsGroup: 999
+  #  fsGroup: 999
+configs:
+  params:
+    "server.insecure": true

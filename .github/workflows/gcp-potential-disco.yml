@@ -46,7 +46,7 @@ jobs:
       id: init
       run: tofu init
       env: 
-         TFVAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
+         TF_VAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 
     - name: OpenTofu Validate
       id: validate

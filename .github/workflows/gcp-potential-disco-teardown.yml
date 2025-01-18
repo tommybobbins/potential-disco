@@ -5,7 +5,7 @@ on:
 
 env:
   WORKING_DIR: infrastructure 
-  TFVAR_project:  ${{ vars.TFVAR_GCP_PROJECT }}
+  TF_VAR_project:  ${{ vars.TFVAR_GCP_PROJECT }}
 
 jobs:
   setup:
@@ -34,10 +34,10 @@ jobs:
     - name: OpenTofu Init
       id: init
       run: |
-        echo "TFVAR_project: $TFVAR_project"
+        echo "TFVAR_project: $TF_VAR_project"
         tofu init
       env:
-         TFVAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
+         TF_VAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 
     - name: OpenTofu Destroy
       id: destroy

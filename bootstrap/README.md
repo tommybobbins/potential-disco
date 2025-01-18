@@ -44,7 +44,7 @@ $ tofu state rm "google_project_service.service[\"iamcredentials.googleapis.com\
 $ tofu import "google_project_service.service[\"oslogin.googleapis.com\"]" "${PROJECT_ID}/oslogin.googleapis.com"
 $ tofu import "google_project_service.service[\"iamcredentials.googleapis.com\"]" "${PROJECT_ID}/iamcredentials.googleapis.com"
 $ tofu apply
-
+````
 ## Github actions setup
 
 Create a set of ENVIRONMENT variables GCP_SERVICE_ACCOUNT, WORKING_DIR and WORKLOAD_IDENTITY_PROVIDER against a new Github environment PRD in Repo Name->Settings->Secrets and variables->Actions

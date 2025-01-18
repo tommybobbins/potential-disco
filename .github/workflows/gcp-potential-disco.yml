@@ -1,14 +1,9 @@
 name: gcp-potential-disco
+
 on:
-  pull_request:
-    # paths: # setup paths if necessary
+  push:
     branches:
-      - main
-    types:
-      - opened # default
-      - synchronize # default
-      - reopened # default
-      - closed
+      - "main"
   workflow_dispatch:
 
 env:
@@ -16,46 +11,46 @@ env:
 
 jobs:
   setup:
+    runs-on: ubuntu-latest
     #permissions:
     #  contents: read
     #  id-token: write
     #  pull-requests: write
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ env.WORKING_DIR }}
+    #defaults:
+    #  run:
+    #    working-directory: ${{ env.WORKING_DIR }}
     steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: google-github-actions/auth@v0.7.0
-        with:
-          create_credentials_file: 'true'
-          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ env.GITHUB_SERVICE_ACCOUNT }}
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: google-github-actions/auth@v0.7.0
+      with:
+        create_credentials_file: 'true'
+        workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+        service_account: ${{ env.GITHUB_SERVICE_ACCOUNT }}
 
-      - uses: opentofu/setup-opentofu@v1
+    - uses: opentofu/setup-opentofu@v1
 
 
-      - name: OpenTofu Init
-        id: init
-        run: tofu init
+    - name: OpenTofu Init
+      id: init
+      run: tofu init
 
-      - name: OpenTofu Validate
-        id: validate
-        run: tofu validate -no-color
+    - name: OpenTofu Validate
+      id: validate
+      run: tofu validate -no-color
 
-      - name: OpenTofu Plan
-        id: plan
-        run: tofu plan -no-color
-        continue-on-error: true
+    - name: OpenTofu Plan
+      id: plan
+      run: tofu plan -no-color
+      continue-on-error: true
 
-      - name: OpenTofu Validate
-        id: validate
-        run: tofu validate -no-color
+    - name: OpenTofu Validate
+      id: validate
+      run: tofu validate -no-color
 
-     - uses: actions/github-script@v6
+    - uses: actions/github-script@v6
        if: github.event_name == 'pull_request'
        env:
          PLAN: "tofu\n${{ steps.plan.outputs.stdout }}"
@@ -92,27 +87,28 @@ jobs:
               body: output
             })
 
-      - name: Tofu Apply
-        id: apply
-        if: github.event.pull_request.merged == true
-        run: tofu apply -auto-approve -input=false
-      - uses: actions/github-script@v6
-        if: github.event.pull_request.merged == true
-        with:
-          script: |
-            const output = `#### OpenTofu Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-            #### OpenTofu Initialization ⚙️\`${{ steps.init.outcome }}\`
-            #### OpenTofu Validation 🤖\`${{ steps.validate.outcome }}\`
-            #### OpenTofu Apply 📖\`${{ steps.apply.outcome }}\`
-            <details><summary>Show Apply</summary>
-            \`\`\`\n
-            ${{ steps.apply.outputs.stdout }}
-            \`\`\`
-            </details>
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.WORKING_DIR }}\`, Workflow: \`${{ github.workflow }}\`*`;
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: output
-            })
+    - name: Tofu Apply
+      id: apply
+      if: github.event.pull_request.merged == true
+      run: tofu apply -auto-approve -input=false
+
+    - uses: actions/github-script@v6
+      if: github.event.pull_request.merged == true
+      with:
+        script: |
+          const output = `#### OpenTofu Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+          #### OpenTofu Initialization ⚙️\`${{ steps.init.outcome }}\`
+          #### OpenTofu Validation 🤖\`${{ steps.validate.outcome }}\`
+          #### OpenTofu Apply 📖\`${{ steps.apply.outcome }}\`
+          <details><summary>Show Apply</summary>
+          \`\`\`\n
+          ${{ steps.apply.outputs.stdout }}
+          \`\`\`
+           </details>
+           *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.WORKING_DIR }}\`, Workflow: \`${{ github.workflow }}\`*`;
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: output
+          })

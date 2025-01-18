@@ -5,9 +5,9 @@ on:
 
 env:
   WORKING_DIR:  "./containers"
-  IMAGE_NAME: 'powerstation-prom-exporter'
+  IMAGE_NAME: "powerstation-prom-exporter"
   PROJECT_ID: ${{ vars.TFVAR_GCP_PROJECT }}
-  AR_REPO_LOCATION: 'europe-west2'
+  AR_REPO_LOCATION: "europe-west2"
   AR_REPO_NAME: powerstation-prom-exporter
   SERVICE_ACOUNT: ${{ vars.GCP_SERVICE_ACCOUNT }}
   WORKLOAD_IDENTIY_PROVIDER: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
@@ -21,7 +21,7 @@ jobs:
       id-token: write
     defaults:
       run:
-        working-directory: ${{ env.WORKING_DIR }}/${{ env.REPO_NAME }}
+        working-directory: ${{ env.WORKING_DIR }}/${{ env.AR_REPO_NAME }}
     steps:
     - uses: actions/checkout@v3
 

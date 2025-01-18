@@ -15,7 +15,6 @@ env:
 
 jobs:
   opentofu:
-    # Add "id-token" with the intended permissions.
     permissions:
       contents: read
       id-token: write

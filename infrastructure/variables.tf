@@ -51,6 +51,7 @@ variable "argo_version" {
   default     = "7.7.16"
 }
 
+
 variable "argocd_enabled" {
   description = "ArgoCD enabled"
   type        = bool
@@ -86,3 +87,9 @@ variable "argocd_applications" {
     "powerstation-prom-exporter",
   ]
 }
+
+variable "prometheus_stack_version" {
+  description = "Prometheus Stack version"
+  default     = "68.2.1"
+}
+

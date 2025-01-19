@@ -51,6 +51,8 @@ jobs:
     - name: OpenTofu Validate
       id: validate
       run: tofu validate -no-color
+      env: 
+         TF_VAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 
     - name: OpenTofu Plan
       id: plan

@@ -96,6 +96,13 @@ jobs:
             body: output
           })
 
+    - uses: 'google-github-actions/get-gke-credentials@v2'
+      if: always()
+      with:
+        cluster_name: "${{ vars.TFVAR_GCP_PROJECT }}-gke"
+        location: ${{ vars.REGION }}
+        project_id: ${{ vars.TFVAR_GCP_PROJECT }}
+
     - name: OpenTofu Apply
       id: apply
       #if: github.event.pull_request.merged == true

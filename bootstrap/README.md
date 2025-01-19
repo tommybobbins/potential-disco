@@ -20,6 +20,7 @@ $ gcloud config set project ${PROJECT_ID}
 $ gcloud storage buckets create gs://${PROJECT_ID}-terraform --project $PROJECT_ID --location europe-west2
 $ gcloud iam service-accounts create tofu-deployer
 $ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/editor
+$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/resourcemanager.projectIamAdmin
 ````
 
 Create the service account keys which will be used for tofu wibbly-flibble-stuff-morestuff.json using:

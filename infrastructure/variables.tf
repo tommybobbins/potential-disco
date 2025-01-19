@@ -79,3 +79,10 @@ variable "container_artifact_registry" {
     "powerstation-prom-exporter",
   ]
 }
+
+variable "argocd_applications" {
+  description = "contact applications to be deployed via Argo"
+  default = [
+    "powerstation-prom-exporter",
+  ]
+}

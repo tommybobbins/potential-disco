@@ -54,7 +54,7 @@ variable "argo_version" {
 variable "argocd_enabled" {
   description = "ArgoCD enabled"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "gke_cluster_ipv4_block" {

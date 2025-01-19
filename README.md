@@ -12,11 +12,11 @@ Not for production use.
 cd bootstrap
 cat README.md
 ````
-Read the README.md in there which will bootstrap the cluster through to the Github actions stages
+Read that README.md to see how to bootstrap the cluster through Github Actions.
 
 # Argo Setup
 
-Replace SecretsManager Secrets with the URL of the repository and your PAT token
+Once the Github actions have run, replace the SecretsManager secrets with the URL of the repository and your PAT token
 
 ````
 {"gh_pat_token":"REPLACE ME!","url":"https://github.com/tommybobbins/potential-disco"}

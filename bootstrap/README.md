@@ -22,6 +22,8 @@ $ gcloud iam service-accounts create tofu-deployer
 $ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/editor
 $ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/resourcemanager.projectIamAdmin
 $ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/container.admin
+$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/container.admin
+$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/secretmanager.admin
 ````
 
 Create the service account keys which will be used for tofu wibbly-flibble-stuff-morestuff.json using:
@@ -54,5 +56,3 @@ Create a set of ENVIRONMENT variables TFVAR_GCP_PROJECT, GCP_SERVICE_ACCOUNT, WO
 
 Create a personal access token for just this repository. Github->Click user icon->Developer settings->Personal Access tokens->Fine Grained access tokens->generate new token. Make a note of the token and add this into the Repository as a secret named REPO_PAT_TOKEN using Repo Name->Settings->Secrets and Variables->Secrets
 ![Github Secret PAT](./images/secrets_pat.png)
-
-

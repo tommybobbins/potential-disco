@@ -39,6 +39,14 @@ jobs:
       env:
          TF_VAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 
+    - uses: 'google-github-actions/get-gke-credentials@v2'
+      if: always()
+      continue-on-error: true
+      with:
+        cluster_name: "${{ vars.TFVAR_GCP_PROJECT }}-gke"
+        location: ${{ vars.REGION }}
+        project_id: ${{ vars.TFVAR_GCP_PROJECT }}
+
     - name: OpenTofu Destroy
       id: destroy
       run: tofu destroy -auto-approve

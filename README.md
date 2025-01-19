@@ -1,7 +1,12 @@
-# Provision a Google Cloud GCP GKE Autopilot Cluster
+# Create a Grafana dashboard inside Kubernetes to examine the National Grid Power Mix
 
-## Not for production use.
-### Deployment
+Project to create a grafana dashboard to scrape the National Energy System Operators Carbon Intesity Operator https://api.carbonintensity.org.uk/
+
+## Provision a Google Cloud GCP GKE Autopilot Cluster
+
+Not for production use.
+
+### Bootstrapping
 
 ````
 cd bootstrap
@@ -17,7 +22,7 @@ Replace SecretsManager Secrets with the URL of the repository and your PAT token
 {"gh_pat_token":"REPLACE ME!","url":"https://github.com/tommybobbins/potential-disco"}
 ````
 
-# Accessing Argo post deployment
+### Accessing Argo post deployment
 
 Gain Kubernetes Cluster credentials
 

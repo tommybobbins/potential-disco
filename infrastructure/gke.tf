@@ -37,9 +37,12 @@ resource "google_container_cluster" "primary" {
 
   deletion_protection = false
 
+  monitoring_config {
+  enable_components = []
   managed_prometheus {
     enabled = true
   }
+}
 
 }
 

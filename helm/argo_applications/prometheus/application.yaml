@@ -14,3 +14,5 @@ spec:
     chart: kube-prometheus-stack
   syncPolicy:
     automated: {}
+    syncOptions:
+      - CreateNamespace=true

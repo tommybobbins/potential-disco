@@ -54,6 +54,14 @@ jobs:
       env: 
          TF_VAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 
+    - uses: 'google-github-actions/get-gke-credentials@v2'
+      if: always()
+      continue-on-error: true
+      with:
+        cluster_name: "${{ vars.TFVAR_GCP_PROJECT }}-gke"
+        location: ${{ vars.REGION }}
+        project_id: ${{ vars.TFVAR_GCP_PROJECT }}
+
     - name: OpenTofu Plan
       id: plan
       run: tofu plan -no-color
@@ -97,14 +105,6 @@ jobs:
             repo: context.repo.repo,
             body: output
           })
-
-    - uses: 'google-github-actions/get-gke-credentials@v2'
-      if: always()
-      continue-on-error: true
-      with:
-        cluster_name: "${{ vars.TFVAR_GCP_PROJECT }}-gke"
-        location: ${{ vars.REGION }}
-        project_id: ${{ vars.TFVAR_GCP_PROJECT }}
 
     - name: OpenTofu Apply
       id: apply

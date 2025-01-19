@@ -2,6 +2,7 @@ locals {
   roles = [
     "roles/resourcemanager.projectIamAdmin", # GitHub Actions identity
     "roles/editor",                          # allow to manage all resources
+    "roles/container.admin",                 # GitHub Actions needs to be able to manage GKE 
   ]
   github_repository_name = var.github_repo # e.g. yourname/yourrepo
 }

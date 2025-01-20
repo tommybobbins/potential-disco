@@ -20,3 +20,21 @@ type Data struct {
 	Generationmix []Generationmix `json:"generationmix"`
 }
 ````
+
+# HELP actual_intensity Actual intensity 
+# TYPE actual_intensity gauge
+actual_intensity 0
+# HELP carbon_intensity_generation_mix Generation mix (percentage)
+# TYPE carbon_intensity_generation_mix gauge
+carbon_intensity_generation_mix{fuel="biomass"} 8.5
+carbon_intensity_generation_mix{fuel="coal"} 0
+carbon_intensity_generation_mix{fuel="gas"} 65.4
+carbon_intensity_generation_mix{fuel="hydro"} 0.3
+carbon_intensity_generation_mix{fuel="imports"} 5.8
+carbon_intensity_generation_mix{fuel="nuclear"} 9.5
+carbon_intensity_generation_mix{fuel="other"} 0
+carbon_intensity_generation_mix{fuel="solar"} 0
+carbon_intensity_generation_mix{fuel="wind"} 10.6
+# HELP forecast_intensity Forecast intensity 
+# TYPE forecast_intensity gauge
+forecast_intensity 0

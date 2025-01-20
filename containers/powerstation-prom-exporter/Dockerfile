@@ -8,6 +8,6 @@ COPY go.mod go.sum .
 RUN go mod download
 COPY *.go ./
 RUN CGO_ENABLED=0 GOOS=linux go build -o /ppe
-EXPOSE 9090
+EXPOSE 9200 
 CMD ["/ppe"]
 

@@ -45,4 +45,4 @@ jobs:
     - name: Build and Push Container
       run: |-
         docker build -t "${{ env.AR_REPO_LOCATION }}-docker.pkg.dev/${{ env.AR_REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}" ./
-        docker push "${{ env.AR_REPO_LOCATION }}-docker.pkg.dev/${{ env.AR_REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}" ./
+        docker push "${{ env.AR_REPO_LOCATION }}-docker.pkg.dev/${{ env.AR_REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}" 

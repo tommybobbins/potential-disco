@@ -7,5 +7,5 @@ spec:
     matchLabels:
       app: {{ .Chart.Name }}
   endpoints:
-  - port: metrics
+  - port: prom-http
     interval: 300s

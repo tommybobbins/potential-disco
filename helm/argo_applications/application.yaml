@@ -24,7 +24,8 @@ spec:
     server: https://kubernetes.default.svc
     namespace: "${NAMESPACE}"
   syncPolicy:
-    # preserveResourcesOnDeletion: true   
+    preserveResourcesOnDeletion: true   
+    automated: {} 
     syncOptions:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=true

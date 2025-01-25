@@ -1,6 +1,6 @@
 # Create a Google Cloud Observability Monitoring dashboard inside Kubernetes to examine the National Grid Power Mix
 
-Project to create a dashboard to scrape the National Energy System Operators Carbon Intesity Operator https://api.carbonintensity.org.uk/ using Kuberrnetes. This is overkill to deploy a single pod, but it proves useful as a bookmark for bootstrapping GCloud, Deploying GKE Autopilot, Deploying Argo and using Google Cloud's own Prometheus pod scraping.
+Project to create a dashboard to scrape the National Energy System Operators Carbon Intesity Operator https://api.carbonintensity.org.uk/ using Kuberrnetes. This is overkill to deploy a single pod, but it proves useful as a bookmark for bootstrapping GCloud, Deploying GKE Autopilot, Deploying Argo automating via Github Actions and using Google Cloud's own Prometheus pod scraping.
 
 ![UK Power Mix Dashboard 2025-01-25](./bootstrap/images/uk_power_mix_dashboard.png)
 
@@ -39,7 +39,6 @@ Fetching cluster endpoint and auth data.
 WARNING: cluster wibble-flibble-123456789-gke is not RUNNING. The kubernetes API may or may not be available. Check the cluster status for more information.
 ````
 
-
 Access Argo using Port forwarding
 ````
 $ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
@@ -51,7 +50,18 @@ Forwarding from 127.0.0.1:8080 -> 8080
 Forwarding from [::1]:8080 -> 8080
 ````
 
+Enter the credentials taken from the get secret call above.
 ![Argo Login](./bootstrap/images/argo_login.png)
+
+The Argo application deploymend is Automated, so using the pat token it should automatically create the application. The project name is passed through as a parameter, you may also need to set the image tag on the container as it has been set as a sha256 sum. This is set in helm/powerstation-prom-exporter/values.yaml.
+
+````
+grep tag helm/powerstation-prom-exporter/values.yaml 
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "@sha256:271881054e744afcc162376abdf6f364445d5946ebdf1bff3ed9191222cbcc69"
+````
+
+![Argo Login](./bootstrap/images/argo_application_deployed.png)
 
 ## Test running pod
 

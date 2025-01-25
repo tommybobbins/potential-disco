@@ -26,6 +26,11 @@ Once the Github actions have run, replace the SecretsManager secrets with the UR
 {"gh_pat_token":"REPLACE ME!","url":"https://github.com/tommybobbins/potential-disco"}
 ````
 
+Run the gcp-potential-disco Github Action.
+Run the push-to-artifact-registry Github Action.
+You may need to run the gcp-potential-disco Github Action one more time as the cluster can take a long time to startup.
+
+
 ### Accessing Argo post deployment
 
 Gain Kubernetes Cluster credentials

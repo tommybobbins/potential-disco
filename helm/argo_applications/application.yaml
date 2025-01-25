@@ -18,7 +18,7 @@ spec:
           upgrade_stage: "placeholder"
     parameters:
     - name: image.repository
-      value: ${REGION}-docker.pkg.dev/${PROJECT_ID}/${NAME}/${NAME}
+      value: "${REGION}-docker.pkg.dev/${PROJECT_ID}/${NAME}/${NAME}"
  
   destination:
     server: https://kubernetes.default.svc

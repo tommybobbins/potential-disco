@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: gcrlocation.docker.dev/nginx
+  repository: europe-west2-docker.pkg.dev/REMOVE_ME/powerstation-prom-exporter/powerstation-prom-exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "@sha256:271881054e744afcc162376abdf6f364445d5946ebdf1bff3ed9191222cbcc69"
 
 imagePullSecrets: []
 nameOverride: ""

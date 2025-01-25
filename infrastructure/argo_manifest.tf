@@ -7,6 +7,7 @@ resource "kubectl_manifest" "argo_application" {
       ENV             = "main"
       PATH            = "helm/argo_applications/${each.value}"
       NAMESPACE       = "scrapers"
+      PROJECT_ID      = var.project
   })
   depends_on = [
     helm_release.argocd,

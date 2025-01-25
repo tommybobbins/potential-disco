@@ -16,6 +16,10 @@ spec:
       valuesObject:
         labels:
           upgrade_stage: "placeholder"
+    parameters:
+    - name: image.repository
+      value: ${REGION}-docker.pkg.dev/${PROJECT_ID}/powerstation-prom-exporter/powerstation-prom-exporter
+ 
   destination:
     server: https://kubernetes.default.svc
     namespace: "${NAMESPACE}"

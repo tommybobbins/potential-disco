@@ -49,3 +49,50 @@ Forwarding from [::1]:8080 -> 8080
 
 ![Argo Login](./bootstrap/images/argo_login.png)
 
+## Test running pod
+
+````
+tng@jake:~/potential-disco/helm/curl-test$ kubectl expose deployment/bobbins --name bobbins --port=9200
+service/bobbins exposed
+tng@jake:~/potential-disco/helm/curl-test$ kubectl get svc
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+bobbins      ClusterIP   10.192.99.60   <none>        9200/TCP   13s
+kubernetes   ClusterIP   10.192.0.1     <none>        443/TCP    97m
+tng@jake:~/potential-disco/helm/curl-test$ kubectl describe svc bobbins
+Name:              bobbins
+Namespace:         default
+Labels:            app=bobbins
+Annotations:       cloud.google.com/neg: {"ingress":true}
+Selector:          app=bobbins
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.192.99.60
+IPs:               10.192.99.60
+Port:              <unset>  9200/TCP
+TargetPort:        9200/TCP
+Endpoints:         10.96.1.8:9200
+Session Affinity:  None
+Events:
+  Type    Reason                          Age                From                   Message
+  ----    ------                          ----               ----                   -------
+  Normal  ADD                             23s                sc-gateway-controller  default/bobbins
+  Normal  DNSRecordProvisioningSucceeded  22s (x4 over 22s)  clouddns-controller    DNS records updated
+tng@jake:~/potential-disco/helm/curl-test$ kubectl exec busybox-curl -it /bin/sh
+kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future version. Use kubectl exec [POD] -- [COMMAND] instead.
+/bin/sh: shopt: not found
+[ root@busybox-curl:/ ]$ curl bobbins:9200
+# HELP carbon_intensity_generation_mix Generation mix (percentage)
+# TYPE carbon_intensity_generation_mix gauge
+carbon_intensity_generation_mix{fuel="biomass"} 8.5
+carbon_intensity_generation_mix{fuel="coal"} 0
+carbon_intensity_generation_mix{fuel="gas"} 14.1
+carbon_intensity_generation_mix{fuel="hydro"} 0.1
+carbon_intensity_generation_mix{fuel="imports"} 10.8
+carbon_intensity_generation_mix{fuel="nuclear"} 12.1
+carbon_intensity_generation_mix{fuel="other"} 0
+carbon_intensity_generation_mix{fuel="solar"} 15.5
+carbon_intensity_generation_mix{fuel="wind"} 38.8
+````
+
+

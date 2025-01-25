@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox-curl
+  name: busybox-curl
+spec:
+  containers:
+  - name: busybox
+    image: radial/busyboxplus:curl
+    command: ["/bin/sh", "-ec", "sleep 7200"]
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

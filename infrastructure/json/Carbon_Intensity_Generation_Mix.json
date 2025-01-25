@@ -1,0 +1,120 @@
+{
+  "displayName": "Carbon_Intensity_Generation_Mix",
+  "mosaicLayout": {
+    "columns": 48,
+    "tiles": [
+      {
+        "width": 24,
+        "height": 16,
+        "widget": {
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "prometheusQuery": "sort(carbon_intensity_generation_mix)",
+                  "unitOverride": "",
+                  "outputFullDuration": false
+                },
+                "plotType": "STACKED_AREA",
+                "legendTemplate": "",
+                "targetAxis": "Y1",
+                "dimensions": [],
+                "measures": [],
+                "breakdowns": []
+              }
+            ],
+            "thresholds": [],
+            "yAxis": {
+              "label": "",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR",
+              "showLegend": false,
+              "displayHorizontal": false
+            }
+          },
+          "title": "Carbon_Intensity_Generation_Mix",
+          "id": ""
+        }
+      },
+      {
+        "widget": {
+          "title": "prometheus/carbon_intensity_generation_mix/gauge [SUM]",
+          "timeSeriesTable": {
+            "columnSettings": [
+              {
+                "column": "__name__",
+                "displayName": "Fuel",
+                "visible": false
+              },
+              {
+                "column": "cluster",
+                "visible": false
+              },
+              {
+                "column": "container",
+                "visible": false
+              },
+              {
+                "column": "fuel",
+                "displayName": "Fuel",
+                "visible": true
+              },
+              {
+                "column": "instance",
+                "visible": false
+              },
+              {
+                "column": "job",
+                "visible": false
+              },
+              {
+                "column": "location",
+                "visible": false
+              },
+              {
+                "column": "namespace",
+                "visible": false
+              },
+              {
+                "column": "pod",
+                "visible": false
+              },
+              {
+                "column": "project_id",
+                "visible": false
+              },
+              {
+                "column": "value",
+                "displayName": "Percentage of Total Power Generation",
+                "visible": true
+              }
+            ],
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "prometheusQuery": "sort(carbon_intensity_generation_mix)",
+                  "unitOverride": "%"
+                }
+              }
+            ],
+            "displayColumnType": false,
+            "metricVisualization": "BAR",
+            "opsAnalyticsSettings": {
+              "maxRows": "0",
+              "pageSize": "0",
+              "showFilterBar": false
+            },
+            "rowSelection": "ROW_SELECTION_UNSPECIFIED"
+          }
+        },
+        "height": 16,
+        "width": 24,
+        "xPos": 24
+      }
+    ]
+  },
+  "dashboardFilters": [],
+  "labels": {}
+}

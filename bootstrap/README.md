@@ -34,6 +34,15 @@ Create the service account keys which will be used for tofu wibbly-flibble-stuff
 created key [123456abcdef1234] of type [json] as [gcp_deployment_creds.json] for [tofu-deployer@wibble-flibble-123456.iam.gserviceaccount.com]
 ````
 
+Edit the version.tf and ensure the bucket is the one created above for your project:
+
+````
+  backend "gcs" {
+    # Change this to your bucket
+    bucket = "wibble-flibble-123456-terraform" # need to update with the bucket name
+````
+
+
 Run the standard terraform deployment:
    ```
    $ tofu init

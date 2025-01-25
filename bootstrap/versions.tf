@@ -11,7 +11,8 @@ terraform {
   required_version = "> 0.14"
 
   backend "gcs" {
-    bucket = "skilled-circle-448210-terraform" # need to update with the bucket name
+    # Change this to your bucket
+    bucket = "wibble-flibble-123456-terraform" # need to update with the bucket name
     prefix = "state"
   }
 }

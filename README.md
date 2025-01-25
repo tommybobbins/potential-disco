@@ -38,7 +38,7 @@ WARNING: cluster wibble-flibble-123456789-gke is not RUNNING. The kubernetes API
 
 Access Argo using Port forwarding
 ````
-$ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echoho
+$ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 
 StringofAdminPasswordReturned
 

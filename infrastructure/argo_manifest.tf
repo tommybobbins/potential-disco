@@ -5,7 +5,7 @@ resource "kubectl_manifest" "argo_application" {
       NAME            = "${each.value}"
       GH_URL          = "https://github.com/tommybobbins/potential-disco"
       ENV             = "main"
-      PATH            = "helm/argo_applications/${each.value}"
+      PATH            = "helm/${each.value}"
       NAMESPACE       = "scrapers"
       PROJECT_ID      = var.project
       REGION          = var.region

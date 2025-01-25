@@ -15,5 +15,6 @@ FROM alpine:latest
 WORKDIR /
 COPY --from=BuildStage /ppe /ppe
 EXPOSE 9200
-user nonroot:nonroot
+RUN useradd -ms /bin/bash app
+user app:app
 CMD ["/ppe"]

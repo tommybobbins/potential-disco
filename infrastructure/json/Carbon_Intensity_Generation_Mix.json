@@ -7,40 +7,35 @@
         "width": 24,
         "height": 16,
         "widget": {
+          "title": "Current UK Power Generation by Type",
           "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
             "dataSets": [
               {
+                "plotType": "STACKED_AREA",
+                "targetAxis": "Y2",
                 "timeSeriesQuery": {
                   "prometheusQuery": "sort(carbon_intensity_generation_mix)",
-                  "unitOverride": "",
-                  "outputFullDuration": false
-                },
-                "plotType": "STACKED_AREA",
-                "legendTemplate": "",
-                "targetAxis": "Y1",
-                "dimensions": [],
-                "measures": [],
-                "breakdowns": []
+                  "unitOverride": "%"
+                }
               }
             ],
             "thresholds": [],
-            "yAxis": {
+            "y2Axis": {
               "label": "",
               "scale": "LINEAR"
-            },
-            "chartOptions": {
-              "mode": "COLOR",
-              "showLegend": false,
-              "displayHorizontal": false
             }
-          },
-          "title": "Carbon_Intensity_Generation_Mix",
-          "id": ""
+          }
         }
       },
       {
+        "xPos": 24,
+        "width": 24,
+        "height": 16,
         "widget": {
-          "title": "prometheus/carbon_intensity_generation_mix/gauge [SUM]",
+          "title": "Top UK Power Generation Fuel Types",
           "timeSeriesTable": {
             "columnSettings": [
               {
@@ -108,10 +103,7 @@
             },
             "rowSelection": "ROW_SELECTION_UNSPECIFIED"
           }
-        },
-        "height": 16,
-        "width": 24,
-        "xPos": 24
+        }
       }
     ]
   },

@@ -1,6 +1,10 @@
-# Create a Grafana dashboard inside Kubernetes to examine the National Grid Power Mix
+# Create a Google Cloud Observability Monitoring dashboard inside Kubernetes to examine the National Grid Power Mix
 
-Project to create a grafana dashboard to scrape the National Energy System Operators Carbon Intesity Operator https://api.carbonintensity.org.uk/
+Project to create a dashboard to scrape the National Energy System Operators Carbon Intesity Operator https://api.carbonintensity.org.uk/ using Kuberrnetes. This is overkill to deploy a single pod, but it proves useful as a bookmark for bootstrapping GCloud, Deploying GKE Autopilot, Deploying Argo and using Google Cloud's own Prometheus pod scraping.
+
+![UK Power Mix Dashboard 2025-01-25](./bootstrap/images/uk_power_mix_dashboard.png)
+
+Autopilot and the Prometheus operator do not play nicely together by default without increasing the threshold limits. I was unwilling to do this, so rewrote the project using GKE built-in Prometheus and displaying the results in an Observability Monitoring dashboard.
 
 ## Provision a Google Cloud GCP GKE Autopilot Cluster
 
@@ -51,37 +55,13 @@ Forwarding from [::1]:8080 -> 8080
 
 ## Test running pod
 
+Deploy the curl-test pod in the scrapers namespace
+
 ````
-tng@jake:~/potential-disco/helm/curl-test$ kubectl expose deployment/bobbins --name bobbins --port=9200
-service/bobbins exposed
-tng@jake:~/potential-disco/helm/curl-test$ kubectl get svc
-NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
-bobbins      ClusterIP   10.192.99.60   <none>        9200/TCP   13s
-kubernetes   ClusterIP   10.192.0.1     <none>        443/TCP    97m
-tng@jake:~/potential-disco/helm/curl-test$ kubectl describe svc bobbins
-Name:              bobbins
-Namespace:         default
-Labels:            app=bobbins
-Annotations:       cloud.google.com/neg: {"ingress":true}
-Selector:          app=bobbins
-Type:              ClusterIP
-IP Family Policy:  SingleStack
-IP Families:       IPv4
-IP:                10.192.99.60
-IPs:               10.192.99.60
-Port:              <unset>  9200/TCP
-TargetPort:        9200/TCP
-Endpoints:         10.96.1.8:9200
-Session Affinity:  None
-Events:
-  Type    Reason                          Age                From                   Message
-  ----    ------                          ----               ----                   -------
-  Normal  ADD                             23s                sc-gateway-controller  default/bobbins
-  Normal  DNSRecordProvisioningSucceeded  22s (x4 over 22s)  clouddns-controller    DNS records updated
 tng@jake:~/potential-disco/helm/curl-test$ kubectl exec busybox-curl -it /bin/sh
 kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future version. Use kubectl exec [POD] -- [COMMAND] instead.
 /bin/sh: shopt: not found
-[ root@busybox-curl:/ ]$ curl bobbins:9200
+[ root@busybox-curl:/ ]$ curl powerstation-prom-exporter:9200
 # HELP carbon_intensity_generation_mix Generation mix (percentage)
 # TYPE carbon_intensity_generation_mix gauge
 carbon_intensity_generation_mix{fuel="biomass"} 8.5

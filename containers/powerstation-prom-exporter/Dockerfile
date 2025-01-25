@@ -13,8 +13,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /ppe
 # Deploy Stage to slim down the 403MB
 FROM alpine:latest
 WORKDIR /
+RUN addgroup -S app && adduser -S -G app app 
 COPY --from=BuildStage /ppe /ppe
+USER app:app
 EXPOSE 9200
-RUN useradd -ms /bin/bash app
-user app:app
 CMD ["/ppe"]

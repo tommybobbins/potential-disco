@@ -8,7 +8,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{ .Chart.Name }}
+      app: {{ .Chart.Name }}
   template:
     metadata:
       annotations:

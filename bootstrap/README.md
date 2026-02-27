@@ -5,12 +5,6 @@
 
 ### Deployment
 
-Create a tofu.tfvars file containing something similar to the following:
-
-    credentials_file  = "wibbly-flibble-stuff-morestuff.json"
-    project           = "wibble-flibble-numbers"
-    region            = "europe-west2"
-
 Example for creating service account
 ````
 $ export PROJECT_ID=wibble-flibble-123456
@@ -41,6 +35,15 @@ Edit the version.tf and ensure the bucket is the one created above for your proj
     # Change this to your bucket
     bucket = "wibble-flibble-123456-terraform" # need to update with the bucket name
 ````
+
+Edit the variables.tf and add the PROJECT_ID to the default line:
+
+````
+  variable "project" {
+    description = "Google Cloud Project Name"
+    default     = "wibble-flibble-123456"
+  }
+```
 
 
 Run the standard terraform deployment:

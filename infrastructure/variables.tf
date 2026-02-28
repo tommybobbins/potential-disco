@@ -7,7 +7,7 @@ variable "region" {
 
 variable "project" {
   description = "Google Cloud Project Name"
-  default     = "my-project-name"
+  default     = "big-mender-486510-q1"
 }
 
 variable "env" {

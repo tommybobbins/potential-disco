@@ -43,15 +43,15 @@ Edit the variables.tf and add the PROJECT_ID to the default line:
     description = "Google Cloud Project Name"
     default     = "wibble-flibble-123456"
   }
-```
+````
 
 
 Run the standard terraform deployment:
-   ```
+   ````
    $ tofu init
    $ tofu plan
    $ tofu apply
-   ```
+   ````
 
 For the bootstrap enabling apis, some have to be imported manually:
 ````

@@ -9,4 +9,4 @@ stringData:
   type: git
   url: ${URL} 
   password: ${TOKEN}
-  username: x-token-auth
+  username: my-token

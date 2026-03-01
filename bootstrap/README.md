@@ -5,6 +5,12 @@
 
 ### Deployment
 
+Create a tofu.tfvars file containing something similar to the following:
+
+    credentials_file  = "wibbly-flibble-stuff-morestuff.json"
+    project           = "wibble-flibble-numbers"
+    region            = "europe-west2"
+
 Example for creating service account
 ````
 $ export PROJECT_ID=wibble-flibble-123456
@@ -14,6 +20,8 @@ $ gcloud config set project ${PROJECT_ID}
 $ gcloud storage buckets create gs://${PROJECT_ID}-terraform --project $PROJECT_ID --location europe-west2
 $ gcloud iam service-accounts create tofu-deployer
 $ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/editor
+$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/iam.workloadIdentityPoolAdmin
+$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/iam.serviceAccountAdmin
 $ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/resourcemanager.projectIamAdmin
 $ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/container.admin
 $ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/container.admin
@@ -48,6 +56,7 @@ Edit the variables.tf and add the PROJECT_ID to the default line:
   }
 ````
 
+=======
 
 Run the standard terraform deployment:
    ````

@@ -82,9 +82,10 @@ variable "container_artifact_registry" {
 }
 
 variable "argocd_applications" {
-  description = "contact applications to be deployed via Argo"
+  description = "Applications to be deployed via Argo"
   default = [
     "powerstation-prom-exporter",
+    "trivy-operator"
   ]
 }
 

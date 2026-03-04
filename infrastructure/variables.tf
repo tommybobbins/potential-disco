@@ -83,10 +83,10 @@ variable "container_artifact_registry" {
 
 variable "argocd_applications" {
   description = "Applications to be deployed via Argo"
-  default = [
-    "powerstation-prom-exporter",
-    "trivy-operator"
-  ]
+  default = {
+    "powerstation-prom-exporter" = "scrapers",
+    "trivy-operator"             = "trivy-system"
+  }
 }
 
 variable "prometheus_stack_version" {

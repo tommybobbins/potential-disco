@@ -89,6 +89,14 @@ variable "argocd_applications" {
   }
 }
 
+variable "templatefile" {
+  description = "Path to the templatefile"
+  default = {
+    "powerstation-prom-exporter" = "../helm/argo_applications/application.yaml",
+    "trivy-operator"             = "../helm/argo_applications/application_noimage.yaml"
+  }
+}
+
 variable "prometheus_stack_version" {
   description = "Prometheus Stack version"
   default     = "68.2.1"

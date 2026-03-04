@@ -18,7 +18,7 @@
 
 resource "kubectl_manifest" "argo_application" {
   for_each = toset(keys(var.argocd_applications))
-  yaml_body = templatefile(lookup(var.templatefile,each.key),
+  yaml_body = templatefile("${lookup(var.templatefile,each.key)}",
     {
       NAME       = "${each.key}"
       GH_URL     = "https://github.com/tommybobbins/potential-disco.git"

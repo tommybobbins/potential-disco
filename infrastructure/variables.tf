@@ -92,8 +92,8 @@ variable "argocd_applications" {
 variable "templatefile" {
   description = "Path to the templatefile"
   default = {
-    "powerstation-prom-exporter" = "helm/argo_applications/application.yaml",
-    "trivy-operator"             = "helm/argo_applications/application_noimage.yaml"
+    "powerstation-prom-exporter" = "../helm/argo_applications/application.yaml",
+    "trivy-operator"             = "../helm/argo_applications/application_noimage.yaml"
   }
 }
 

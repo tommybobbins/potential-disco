@@ -682,7 +682,7 @@ serviceAccount:
 # -- podAnnotations annotations added to the operator's pod
 podAnnotations:
   prometheus.io/scrape: "true"
-  prometheus.io/port: "${metrics_port}"
+  prometheus.io/port: "8080"
 
 
 podSecurityContext: {}

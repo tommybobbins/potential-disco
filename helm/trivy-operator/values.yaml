@@ -221,10 +221,7 @@ service:
   # -- port exposed by the Service
   metricsPort: 80
   # -- annotations added to the operator's service
-  #annotations: {}
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "9200"
+  annotations: {}
   # -- appProtocol of the monitoring service
   metricsAppProtocol: TCP
   # -- the Service type
@@ -683,7 +680,10 @@ serviceAccount:
   name: ""
 
 # -- podAnnotations annotations added to the operator's pod
-podAnnotations: {}
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "${metrics_port}"
+
 
 podSecurityContext: {}
 # fsGroup: 2000

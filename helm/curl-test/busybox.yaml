@@ -3,12 +3,12 @@ kind: Pod
 metadata:
   creationTimestamp: null
   labels:
-    run: busybox-curl
-  name: busybox-curl
+    run: busybox
+  name: busybox
 spec:
   containers:
   - name: busybox
-    image: radial/busyboxplus:curl
+    image: busybox:latest
     command: ["/bin/sh", "-ec", "sleep 7200"]
   dnsPolicy: ClusterFirst
   restartPolicy: Always

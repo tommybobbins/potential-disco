@@ -216,15 +216,15 @@ image:
 # -- service only expose a metrics endpoint for prometheus to scrape,
 # trivy-operator does not have a user interface.
 service:
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "9200"
   # -- if true, the Service doesn't allocate any IP
   headless: true
   # -- port exposed by the Service
   metricsPort: 80
   # -- annotations added to the operator's service
-  annotations: {}
+  #annotations: {}
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9200"
   # -- appProtocol of the monitoring service
   metricsAppProtocol: TCP
   # -- the Service type

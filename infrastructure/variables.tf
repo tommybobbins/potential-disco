@@ -48,7 +48,7 @@ variable "project_lifecycle" {
 
 variable "argo_version" {
   description = "Helm Chart version for ArgoCD"
-  default     = "9.4.5"
+  default     = "9.5.14"
 }
 
 

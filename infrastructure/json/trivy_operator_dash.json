@@ -1,0 +1,217 @@
+{
+  "displayName": "Trivy Operator Dashboard",
+  "dashboardFilters": [],
+  "description": "",
+  "labels": {
+    "cloud-monitoring-dashboard-importer": "",
+    "goog-imported-grafana-dashboard": "",
+    "goog-imported-grafana-dashboard-from-ui": "",
+    "goog-imported-grafana-id": "17813",
+    "goog-imported-grafana-revision": "12",
+    "goog-imported-via-script": ""
+  },
+  "mosaicLayout": {
+    "columns": 24,
+    "tiles": [
+      {
+        "yPos": 1,
+        "height": 9,
+        "width": 24,
+        "widget": {
+          "title": "Number and Type of Security Issues",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_image_vulnerabilities)",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 10,
+        "height": 9,
+        "width": 24,
+        "widget": {
+          "title": "Severity Breakdown of all Vulnerabilities",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_image_vulnerabilities{severity=\"Critical\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 19,
+        "height": 8,
+        "width": 12,
+        "widget": {
+          "title": "Number of Vulnerabilities by namespace",
+          "id": "",
+          "xyChart": {
+            "dataSets": [
+              {
+                "breakdowns": [],
+                "dimensions": [],
+                "legendTemplate": "__auto",
+                "measures": [],
+                "plotType": "LINE",
+                "sort": [],
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_image_vulnerabilities) by (namespace)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "thresholds": []
+          }
+        }
+      },
+      {
+        "yPos": 27,
+        "height": 14,
+        "width": 24,
+        "widget": {
+          "title": "Vulnerability by Image",
+          "id": "",
+          "timeSeriesTable": {
+            "columnSettings": [
+              {
+                "column": "value",
+                "visible": false
+              }
+            ],
+            "dataSets": [
+              {
+                "tableTemplate": "",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_image_vulnerabilities{severity=\"Critical\"}) by (image_repository,image_tag)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "displayColumnType": false,
+            "metricVisualization": "NUMBER"
+          }
+        }
+      },
+      {
+        "yPos": 41,
+        "height": 9,
+        "width": 24,
+        "widget": {
+          "title": "Severity Breakdown of all Misconfiguration",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_resource_configaudits{severity=\"Critical\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 50,
+        "height": 9,
+        "width": 24,
+        "widget": {
+          "title": "Severity Breakdown of RBAC Security Issues",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_role_rbacassessments{severity=\"Critical\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 59,
+        "height": 8,
+        "width": 12,
+        "widget": {
+          "title": "Exposed Secrets per namespace",
+          "id": "",
+          "xyChart": {
+            "dataSets": [
+              {
+                "breakdowns": [],
+                "dimensions": [],
+                "legendTemplate": "__auto",
+                "measures": [],
+                "plotType": "LINE",
+                "sort": [],
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_image_exposedsecrets) by (namespace)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "thresholds": []
+          }
+        }
+      },
+      {
+        "yPos": 67,
+        "height": 6,
+        "width": 24,
+        "widget": {
+          "title": "Conversion info",
+          "id": "",
+          "text": {
+            "content": "Converted from 17813_rev2.json on 2026-3-5 at 22:19:48\n\nFor conversion issues such as no data in charts or missing tiles, please see our [troubleshooting docs](https://github.com/GoogleCloudPlatform/monitoring-dashboard-samples/blob/master/scripts/dashboard-importer/README.md#conversion-issues)\n\n##### Generated Warnings\n\n- This dashboard contains collapsible groups that were not imported because the importer doesn't support their conversion. Tiles in collapsible groups will be unnested.\n- Template variable 'DS_PROMETHEUS' was skipped because its type 'datasource' is not supported",
+            "format": "MARKDOWN",
+            "style": {
+              "backgroundColor": "",
+              "fontSize": "FONT_SIZE_UNSPECIFIED",
+              "horizontalAlignment": "HORIZONTAL_ALIGNMENT_UNSPECIFIED",
+              "padding": "PADDING_SIZE_UNSPECIFIED",
+              "pointerLocation": "POINTER_LOCATION_UNSPECIFIED",
+              "textColor": "",
+              "verticalAlignment": "VERTICAL_ALIGNMENT_UNSPECIFIED"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

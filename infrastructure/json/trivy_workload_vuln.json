@@ -1,0 +1,238 @@
+{
+  "displayName": "Trivy: Workload Vulnerabilities",
+  "dashboardFilters": [],
+  "description": "",
+  "labels": {
+    "cloud-monitoring-dashboard-importer": "",
+    "goog-imported-grafana-dashboard": "",
+    "goog-imported-grafana-dashboard-from-ui": "",
+    "goog-imported-grafana-id": "17046",
+    "goog-imported-grafana-revision": "50",
+    "goog-imported-via-script": ""
+  },
+  "mosaicLayout": {
+    "columns": 48,
+    "tiles": [
+      {
+        "height": 6,
+        "width": 48,
+        "widget": {
+          "title": "Reference",
+          "id": "",
+          "text": {
+            "content": "<p style=\"text-align: center\">This project is maintained by https://github.com/lucasafonsokremer/trivy-vulnerability-exporter</p>           ",
+            "format": "MARKDOWN",
+            "style": {
+              "backgroundColor": "",
+              "fontSize": "FONT_SIZE_UNSPECIFIED",
+              "horizontalAlignment": "HORIZONTAL_ALIGNMENT_UNSPECIFIED",
+              "padding": "PADDING_SIZE_UNSPECIFIED",
+              "pointerLocation": "POINTER_LOCATION_UNSPECIFIED",
+              "textColor": "",
+              "verticalAlignment": "VERTICAL_ALIGNMENT_UNSPECIFIED"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 6,
+        "height": 18,
+        "width": 6,
+        "widget": {
+          "title": "Critical",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "count(trivy_image_vulnerabilities{severity=\"CRITICAL\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 6,
+        "xPos": 6,
+        "height": 18,
+        "width": 6,
+        "widget": {
+          "title": "High",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "count(trivy_image_vulnerabilities{severity=\"HIGH\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 6,
+        "xPos": 12,
+        "height": 18,
+        "width": 6,
+        "widget": {
+          "title": "Medium",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "count(trivy_image_vulnerabilities{severity=\"MEDIUM\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 6,
+        "xPos": 18,
+        "height": 18,
+        "width": 6,
+        "widget": {
+          "title": "Low",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "count(trivy_image_vulnerabilities{severity=\"LOW\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 6,
+        "xPos": 24,
+        "height": 18,
+        "width": 6,
+        "widget": {
+          "title": "Unkown",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "count(trivy_image_vulnerabilities{severity=\"UNKNOWN\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 6,
+        "xPos": 30,
+        "height": 18,
+        "width": 18,
+        "widget": {
+          "title": "Vulnerabilities overview",
+          "id": "",
+          "pieChart": {
+            "chartType": "PIE",
+            "dataSets": [
+              {
+                "breakdowns": [],
+                "dimensions": [],
+                "measures": [],
+                "sliceNameTemplate": "",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_image_vulnerabilities) by (severity)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "showLabels": false,
+            "showTotal": false,
+            "sliceAggregatedThreshold": 0
+          }
+        }
+      },
+      {
+        "yPos": 24,
+        "height": 52,
+        "width": 48,
+        "widget": {
+          "title": "Image Vulnerabilities",
+          "id": "",
+          "timeSeriesTable": {
+            "columnSettings": [
+              {
+                "column": "value",
+                "visible": false
+              }
+            ],
+            "dataSets": [
+              {
+                "tableTemplate": "",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_image_vulnerabilities{severity=\"CRITICAL\"}) by (workloadName, image)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "displayColumnType": false,
+            "metricVisualization": "NUMBER"
+          }
+        }
+      },
+      {
+        "yPos": 76,
+        "height": 10,
+        "width": 48,
+        "widget": {
+          "title": "Conversion info",
+          "id": "",
+          "text": {
+            "content": "Converted from 17046_rev1.json on 2026-3-5 at 22:17:36\n\nFor conversion issues such as no data in charts or missing tiles, please see our [troubleshooting docs](https://github.com/GoogleCloudPlatform/monitoring-dashboard-samples/blob/master/scripts/dashboard-importer/README.md#conversion-issues)\n\n##### Generated Warnings\n\n",
+            "format": "MARKDOWN",
+            "style": {
+              "backgroundColor": "",
+              "fontSize": "FONT_SIZE_UNSPECIFIED",
+              "horizontalAlignment": "HORIZONTAL_ALIGNMENT_UNSPECIFIED",
+              "padding": "PADDING_SIZE_UNSPECIFIED",
+              "pointerLocation": "POINTER_LOCATION_UNSPECIFIED",
+              "textColor": "",
+              "verticalAlignment": "VERTICAL_ALIGNMENT_UNSPECIFIED"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

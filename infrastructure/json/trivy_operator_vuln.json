@@ -1,0 +1,693 @@
+{
+  "displayName": "Trivy Operator - Vulnerabilities",
+  "dashboardFilters": [
+    {
+      "filterType": "RESOURCE_LABEL",
+      "labelKey": "cluster",
+      "stringValue": "",
+      "templateVariable": "cluster",
+      "valueType": "STRING"
+    },
+    {
+      "filterType": "RESOURCE_LABEL",
+      "labelKey": "namespace",
+      "stringValue": "",
+      "templateVariable": "namespace",
+      "valueType": "STRING"
+    }
+  ],
+  "description": "",
+  "labels": {
+    "cloud-monitoring-dashboard-importer": "",
+    "goog-imported-grafana-dashboard": "",
+    "goog-imported-grafana-dashboard-from-ui": "",
+    "goog-imported-grafana-id": "16337",
+    "goog-imported-grafana-revision": "15",
+    "goog-imported-via-script": ""
+  },
+  "mosaicLayout": {
+    "columns": 24,
+    "tiles": [
+      {
+        "yPos": 1,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "CRITICAL",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_image_vulnerabilities{severity=\"Critical\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 1,
+        "xPos": 4,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "HIGH",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_image_vulnerabilities{severity=\"High\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 1,
+        "xPos": 8,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "MEDIUM",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_image_vulnerabilities{severity=\"Medium\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 1,
+        "xPos": 12,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "LOW",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_image_vulnerabilities{severity=\"Low\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 1,
+        "xPos": 16,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "UNKNOWN",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_image_vulnerabilities{severity=\"Unknown\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 1,
+        "xPos": 20,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "TOTAL",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_image_vulnerabilities{namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 5,
+        "height": 8,
+        "width": 12,
+        "widget": {
+          "title": "Total vulnerabilities by namespaces",
+          "id": "",
+          "xyChart": {
+            "dataSets": [
+              {
+                "breakdowns": [],
+                "dimensions": [],
+                "legendTemplate": "${labels.namespace}",
+                "measures": [],
+                "plotType": "LINE",
+                "sort": [],
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_image_vulnerabilities{cluster=~\"${cluster.value}\", namespace=~\"${namespace.value}\"}) by (namespace)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "thresholds": []
+          }
+        }
+      },
+      {
+        "yPos": 5,
+        "xPos": 12,
+        "height": 8,
+        "width": 12,
+        "widget": {
+          "title": "Total vulnerabilities by severity in selected namespace(s)",
+          "id": "",
+          "xyChart": {
+            "dataSets": [
+              {
+                "breakdowns": [],
+                "dimensions": [],
+                "legendTemplate": "__auto",
+                "measures": [],
+                "plotType": "LINE",
+                "sort": [],
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_image_vulnerabilities{cluster=~\"${cluster.value}\"}) by (severity)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "thresholds": []
+          }
+        }
+      },
+      {
+        "yPos": 14,
+        "height": 12,
+        "width": 24,
+        "widget": {
+          "title": "Vulnerability count per image and severity in $namespace namespace(s)",
+          "id": "",
+          "timeSeriesTable": {
+            "columnSettings": [
+              {
+                "column": "value",
+                "visible": false
+              }
+            ],
+            "dataSets": [
+              {
+                "tableTemplate": "",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_image_vulnerabilities{namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"}) by (namespace, image_registry, image_repository, image_tag, severity) > 0",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "displayColumnType": false,
+            "metricVisualization": "NUMBER"
+          }
+        }
+      },
+      {
+        "yPos": 26,
+        "height": 12,
+        "width": 24,
+        "widget": {
+          "title": "Detailed CVE vulnerabilities in $namespace namespace(s)",
+          "id": "",
+          "timeSeriesTable": {
+            "columnSettings": [
+              {
+                "column": "value",
+                "visible": false
+              }
+            ],
+            "dataSets": [
+              {
+                "tableTemplate": "",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_vulnerability_id{vuln_id=~\"CVE.*\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"}) by (namespace, image_registry, image_repository, image_tag, vuln_id, severity)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "displayColumnType": false,
+            "metricVisualization": "NUMBER"
+          }
+        }
+      },
+      {
+        "yPos": 39,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "CRITICAL",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_resource_configaudits{severity=\"Critical\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 39,
+        "xPos": 4,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "HIGH",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_resource_configaudits{severity=\"High\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 39,
+        "xPos": 8,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "MEDIUM",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_resource_configaudits{severity=\"Medium\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 39,
+        "xPos": 12,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "LOW",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_resource_configaudits{severity=\"Low\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 39,
+        "xPos": 16,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "TOTAL",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_resource_configaudits{namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 43,
+        "height": 8,
+        "width": 12,
+        "widget": {
+          "title": "Total config audit report by namespaces",
+          "id": "",
+          "xyChart": {
+            "dataSets": [
+              {
+                "breakdowns": [],
+                "dimensions": [],
+                "legendTemplate": "__auto",
+                "measures": [],
+                "plotType": "LINE",
+                "sort": [],
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_resource_configaudits{cluster=~\"${cluster.value}\", namespace=~\"${namespace.value}\"}) by (namespace)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "thresholds": []
+          }
+        }
+      },
+      {
+        "yPos": 43,
+        "xPos": 12,
+        "height": 8,
+        "width": 12,
+        "widget": {
+          "title": "Total config audit report by severity",
+          "id": "",
+          "xyChart": {
+            "dataSets": [
+              {
+                "breakdowns": [],
+                "dimensions": [],
+                "legendTemplate": "__auto",
+                "measures": [],
+                "plotType": "LINE",
+                "sort": [],
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_resource_configaudits{cluster=~\"${cluster.value}\"}) by (severity)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "thresholds": []
+          }
+        }
+      },
+      {
+        "yPos": 52,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "CRITICAL",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_role_rbacassessments{severity=\"Critical\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 52,
+        "xPos": 4,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "HIGH",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_role_rbacassessments{severity=\"High\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 52,
+        "xPos": 8,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "MEDIUM",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_role_rbacassessments{severity=\"Medium\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 52,
+        "xPos": 12,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "LOW",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_role_rbacassessments{severity=\"Low\", namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 52,
+        "xPos": 16,
+        "height": 4,
+        "width": 4,
+        "widget": {
+          "title": "TOTAL",
+          "id": "",
+          "scorecard": {
+            "breakdowns": [],
+            "dimensions": [],
+            "measures": [],
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [],
+            "timeSeriesQuery": {
+              "outputFullDuration": false,
+              "prometheusQuery": "sum(trivy_role_rbacassessments{namespace=~\"${namespace.value}\", cluster=~\"${cluster.value}\"})",
+              "unitOverride": ""
+            }
+          }
+        }
+      },
+      {
+        "yPos": 56,
+        "height": 8,
+        "width": 12,
+        "widget": {
+          "title": "Total RBAC Assessments by namespaces",
+          "id": "",
+          "xyChart": {
+            "dataSets": [
+              {
+                "breakdowns": [],
+                "dimensions": [],
+                "legendTemplate": "__auto",
+                "measures": [],
+                "plotType": "LINE",
+                "sort": [],
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_role_rbacassessments{cluster=~\"${cluster.value}\"}) by (namespace)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "thresholds": []
+          }
+        }
+      },
+      {
+        "yPos": 56,
+        "xPos": 12,
+        "height": 8,
+        "width": 12,
+        "widget": {
+          "title": "Total RBAC Assessments by severity",
+          "id": "",
+          "xyChart": {
+            "dataSets": [
+              {
+                "breakdowns": [],
+                "dimensions": [],
+                "legendTemplate": "__auto",
+                "measures": [],
+                "plotType": "LINE",
+                "sort": [],
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_role_rbacassessments{cluster=~\"${cluster.value}\"}) by (severity)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "thresholds": []
+          }
+        }
+      },
+      {
+        "yPos": 65,
+        "height": 8,
+        "width": 24,
+        "widget": {
+          "title": "Total Exposed Secrets by namespaces",
+          "id": "",
+          "xyChart": {
+            "dataSets": [
+              {
+                "breakdowns": [],
+                "dimensions": [],
+                "legendTemplate": "__auto",
+                "measures": [],
+                "plotType": "LINE",
+                "sort": [],
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "outputFullDuration": false,
+                  "prometheusQuery": "sum(trivy_image_exposedsecrets{cluster=~\"${cluster.value}\"}) by (namespace)",
+                  "unitOverride": ""
+                }
+              }
+            ],
+            "thresholds": []
+          }
+        }
+      },
+      {
+        "yPos": 73,
+        "height": 6,
+        "width": 24,
+        "widget": {
+          "title": "Conversion info",
+          "id": "",
+          "text": {
+            "content": "Converted from 16337_rev15.json on 2026-3-5 at 23:12:30\n\nFor conversion issues such as no data in charts or missing tiles, please see our [troubleshooting docs](https://github.com/GoogleCloudPlatform/monitoring-dashboard-samples/blob/master/scripts/dashboard-importer/README.md#conversion-issues)\n\n##### Generated Warnings\n\n- Template variable 'datasource' was skipped because its type 'datasource' is not supported\n- Template variable 'resolution' was skipped because its type 'custom' is not supported",
+            "format": "MARKDOWN",
+            "style": {
+              "backgroundColor": "",
+              "fontSize": "FONT_SIZE_UNSPECIFIED",
+              "horizontalAlignment": "HORIZONTAL_ALIGNMENT_UNSPECIFIED",
+              "padding": "PADDING_SIZE_UNSPECIFIED",
+              "pointerLocation": "POINTER_LOCATION_UNSPECIFIED",
+              "textColor": "",
+              "verticalAlignment": "VERTICAL_ALIGNMENT_UNSPECIFIED"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

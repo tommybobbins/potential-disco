@@ -41,6 +41,9 @@ resource "google_container_cluster" "primary" {
     enable_components = ["SYSTEM_COMPONENTS", "POD"]
     managed_prometheus {
       enabled = true
+        auto_monitoring_config {
+          scope = "ALL"
+        }
     }
   }
 

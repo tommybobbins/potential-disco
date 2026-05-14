@@ -817,8 +817,8 @@ nodeCollector:
     - name: etc-systemd
       hostPath:
         path: /etc/systemd
-   - name: lib-systemd
-     hostPath:
+    - name: lib-systemd
+      hostPath:
         path: /lib/systemd
     - name: etc-kubernetes
       hostPath:

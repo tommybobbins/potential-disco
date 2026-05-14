@@ -220,11 +220,11 @@ service:
   # -- if true, the Service doesn't allocate any IP
   headless: true
   # -- port exposed by the Service
-  metricsPort: 9200
+  metricsPort: 8080
   # -- annotations added to the operator's service
   annotations:
     prometheus.io/scrape: "true"
-    prometheus.io/port: "9200"
+    prometheus.io/port: "8080"
 
   # -- appProtocol of the monitoring service
   metricsAppProtocol: TCP

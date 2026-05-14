@@ -19,16 +19,16 @@ jobs:
       run:
         working-directory: ${{ env.WORKING_DIR }}
     steps:
-    - uses: actions/checkout@de0fac2
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
     - id: 'auth'
       name: 'Authenticate to Google Cloud'
-      uses: google-github-actions/auth@7c6bc77
+      uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093
       with:
         create_credentials_file: 'true'
         workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
         service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
 
-    - uses: opentofu/setup-opentofu@fc711fa
+    - uses: opentofu/setup-opentofu@fc711fa910b93cba0f3fbecaafc9f42fd0c411cb
 
     - name: OpenTofu Init
       id: init
@@ -38,7 +38,7 @@ jobs:
       env:
          TF_VAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 
-    - uses: google-github-actions/get-gke-credentials@3da1e46
+    - uses: google-github-actions/get-gke-credentials@3da1e46a907576cefaa90c484278bb5b259dd395
       if: always()
       continue-on-error: true
       with:

@@ -222,7 +222,7 @@ service:
   # -- port exposed by the Service
   metricsPort: 8080
   # -- annotations added to the operator's service
-  annotations: {}
+  annotations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "8080"
 

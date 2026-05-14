@@ -18,7 +18,8 @@ targetNamespaces: ""
 # -- excludeNamespaces is a comma separated list of namespaces (or glob patterns)
 # to be excluded from scanning. Only applicable in the all namespaces install
 # mode, i.e. when the targetNamespaces values is a blank string.
-excludeNamespaces: "kube-system,kube-public,kube-node-lease,gke-managed-parallelstorecsi,gke-gmp-system,gke-managed-system"
+excludeNamespaces: "gke-gmp-system, gke-managed-cim, gke-managed-filestorecsi, gke-managed-networking-dra-driver, gke-managed-parallelstorecsi, gke-managed-system, gke-managed-volumepopulator, gmp-public, kube-node-lease, kube-public, kube-system"
+
 
 # -- extraEnv is a list of extra environment variables for the trivy-operator.
 extraEnv: []

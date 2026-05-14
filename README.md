@@ -90,4 +90,8 @@ carbon_intensity_generation_mix{fuel="solar"} 15.5
 carbon_intensity_generation_mix{fuel="wind"} 38.8
 ````
 
+## Google Cloud Observability Trivy Dashboard
+
+![GCloud Trivy Dashboard](./bootstrap/images/gcloud_observability_monitoring_trivy.png)
+
 

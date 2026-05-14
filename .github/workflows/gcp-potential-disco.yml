@@ -69,7 +69,7 @@ jobs:
       env: 
          TF_VAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 
-    - uses: actions/github-script@fc711fa910b93cba0f3fbecaafc9f42fd0c411c
+    - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
       if: github.event_name == 'pull_request'
       env:
         PLAN: "tofu\n${{ steps.plan.outputs.stdout }}"
@@ -113,7 +113,7 @@ jobs:
       env: 
          TF_VAR_project: ${{ vars.TFVAR_GCP_PROJECT }}
 
-    - uses: actions/github-script@fc711fa910b93cba0f3fbecaafc9f42fd0c411c
+    - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
       if: github.event.pull_request.merged == true
       with:
         script: |

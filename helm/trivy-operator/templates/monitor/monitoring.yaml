@@ -7,5 +7,5 @@ spec:
     matchLabels:
       app.kubernetes.io/name: {{ .Chart.Name }}
   endpoints:
-  - port: 8080
+  - port: metrics
     interval: 300s

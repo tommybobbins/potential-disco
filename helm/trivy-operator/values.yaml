@@ -801,7 +801,7 @@ nodeCollector:
       readOnly: true
 
   # -- node-collector pod volumes definition for collecting config files information
-  volumes: {}
+  volumes:
     - name: var-lib-etcd
       hostPath:
         path: /var/lib/etcd

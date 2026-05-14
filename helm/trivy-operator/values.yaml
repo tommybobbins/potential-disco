@@ -313,7 +313,7 @@ trivyOperator:
   # -- scanJobPodTemplateContainerSecurityContext SecurityContext the user wants the scanner and node collector containers (and their
   # initContainers) to be amended with.
   scanJobPodTemplateContainerSecurityContext:
-    allowPrivilegeEscalation: false
+    allowPrivilegeEscalation: true
     capabilities:
       drop:
         - ALL

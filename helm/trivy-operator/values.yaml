@@ -752,6 +752,7 @@ policiesBundle:
   insecure: false
 
 nodeCollector:
+  enabled: false
   # -- useNodeSelector determine if to use nodeSelector (by auto detecting node name) with node-collector scan job
   useNodeSelector: false
   # -- registry of the node-collector image

@@ -223,8 +223,8 @@ service:
   metricsPort: 8080
   # -- annotations added to the operator's service
   annotations: {}
-#    prometheus.io/scrape: "true"
-#    prometheus.io/port: "8080"
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"
 
   # -- appProtocol of the monitoring service
   metricsAppProtocol: TCP

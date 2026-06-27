@@ -12,23 +12,24 @@ Create a tofu.tfvars file containing something similar to the following:
     region            = "europe-west2"
 
 Example for creating service account
-````
-$ export PROJECT_ID=wibble-flibble-123456
-$ gcloud config set project $PROJECT_ID
-$ gcloud auth application-default login
-$ gcloud config set project ${PROJECT_ID}
-$ gcloud storage buckets create gs://${PROJECT_ID}-terraform --project $PROJECT_ID --location europe-west2
-$ gcloud iam service-accounts create tofu-deployer
-$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/editor
-$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/iam.workloadIdentityPoolAdmin
-$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/iam.serviceAccountAdmin
-$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/resourcemanager.projectIamAdmin
-$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/container.admin
-$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/container.admin
-$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/secretmanager.admin
-$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/iam.workloadIdentityPoolAdmin
-$ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/iam.serviceAccountAdmin
 
+````
+export PROJECT_ID=wibble-flibble-123456
+export TF_VAR_project=${PROJECT_ID}
+gcloud config set project ${PROJECT_ID}
+gcloud auth application-default login
+gcloud config set project ${PROJECT_ID}
+gcloud storage buckets create gs://${PROJECT_ID}-terraform --project $PROJECT_ID --location europe-west2
+gcloud iam service-accounts create tofu-deployer
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/editor
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/iam.workloadIdentityPoolAdmin
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/iam.serviceAccountAdmin
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/resourcemanager.projectIamAdmin
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/container.admin
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/container.admin
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/secretmanager.admin
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/iam.workloadIdentityPoolAdmin
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:tofu-deployer@${PROJECT_ID}.iam.gserviceaccount.com" --role=roles/iam.serviceAccountAdmin
 ````
 
 Create the service account keys which will be used for tofu wibbly-flibble-stuff-morestuff.json using:
@@ -47,7 +48,7 @@ Edit the version.tf and ensure the bucket is the one created above for your proj
     bucket = "wibble-flibble-123456-terraform" # need to update with the bucket name
 ````
 
-Edit the variables.tf and add the PROJECT_ID to the default line:
+Edit the variables.tf and add the PROJECT_ID to the default line or set the TF_VAR_project variable as above
 
 ````
   variable "project" {
